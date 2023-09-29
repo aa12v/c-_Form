@@ -52,7 +52,7 @@ namespace Sistem
                     switch (kullaniciRol)
                     {
                         case "form2":
-                            Form10 form2 = new Form10();
+                            Form11 form2 = new Form11();
                             form2.Show();
                             this.Hide();
                             break;

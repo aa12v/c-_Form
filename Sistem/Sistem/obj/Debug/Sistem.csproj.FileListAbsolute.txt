@@ -182,3 +182,4 @@ C:\Users\provent_yazilim\Documents\GitHub\c-_Form\Sistem\Sistem\obj\Debug\Sistem
 C:\Users\provent_yazilim\Documents\GitHub\c-_Form\Sistem\Sistem\obj\Debug\Sistem.csproj.CopyComplete
 C:\Users\provent_yazilim\Documents\GitHub\c-_Form\Sistem\Sistem\obj\Debug\Sistem.exe
 C:\Users\provent_yazilim\Documents\GitHub\c-_Form\Sistem\Sistem\obj\Debug\Sistem.pdb
+C:\Users\provent_yazilim\Desktop\Csharp_Kod\Sistem\Sistem\obj\Debug\Sistem.Form11.resources

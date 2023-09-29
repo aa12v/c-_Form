@@ -59,8 +59,6 @@
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.textBox_olusturulacakBarcode = new System.Windows.Forms.TextBox();
             this.button_BarcodeBastir = new System.Windows.Forms.Button();
-            this.button_kaydiYazdir = new System.Windows.Forms.Button();
-            this.button_kaydiYenile = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.textBox_ara = new System.Windows.Forms.TextBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
@@ -100,7 +98,7 @@
             // button_kayitlariListele
             // 
             this.button_kayitlariListele.Font = new System.Drawing.Font("Arial Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button_kayitlariListele.Location = new System.Drawing.Point(482, 175);
+            this.button_kayitlariListele.Location = new System.Drawing.Point(380, 494);
             this.button_kayitlariListele.Name = "button_kayitlariListele";
             this.button_kayitlariListele.Size = new System.Drawing.Size(97, 47);
             this.button_kayitlariListele.TabIndex = 70;
@@ -111,7 +109,7 @@
             // button_kaydiSil
             // 
             this.button_kaydiSil.Font = new System.Drawing.Font("Arial Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button_kaydiSil.Location = new System.Drawing.Point(482, 228);
+            this.button_kaydiSil.Location = new System.Drawing.Point(277, 494);
             this.button_kaydiSil.Name = "button_kaydiSil";
             this.button_kaydiSil.Size = new System.Drawing.Size(97, 47);
             this.button_kaydiSil.TabIndex = 69;
@@ -122,7 +120,7 @@
             // button_personelAra
             // 
             this.button_personelAra.Font = new System.Drawing.Font("Arial Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button_personelAra.Location = new System.Drawing.Point(933, 190);
+            this.button_personelAra.Location = new System.Drawing.Point(868, 210);
             this.button_personelAra.Name = "button_personelAra";
             this.button_personelAra.Size = new System.Drawing.Size(97, 47);
             this.button_personelAra.TabIndex = 68;
@@ -152,7 +150,7 @@
             this.groupBox1.Controls.Add(this.label9);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox1.Location = new System.Drawing.Point(4, 164);
+            this.groupBox1.Location = new System.Drawing.Point(5, 154);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(472, 334);
             this.groupBox1.TabIndex = 67;
@@ -341,7 +339,7 @@
             // 
             this.label_saatDakikaSaniye.AutoSize = true;
             this.label_saatDakikaSaniye.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label_saatDakikaSaniye.Location = new System.Drawing.Point(946, 130);
+            this.label_saatDakikaSaniye.Location = new System.Drawing.Point(1274, 111);
             this.label_saatDakikaSaniye.Name = "label_saatDakikaSaniye";
             this.label_saatDakikaSaniye.Size = new System.Drawing.Size(17, 18);
             this.label_saatDakikaSaniye.TabIndex = 66;
@@ -351,7 +349,7 @@
             // 
             this.label_günAyYil.AutoSize = true;
             this.label_günAyYil.Font = new System.Drawing.Font("Arial Black", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.label_günAyYil.Location = new System.Drawing.Point(1047, 130);
+            this.label_günAyYil.Location = new System.Drawing.Point(1341, 111);
             this.label_günAyYil.Name = "label_günAyYil";
             this.label_günAyYil.Size = new System.Drawing.Size(17, 18);
             this.label_günAyYil.TabIndex = 65;
@@ -360,7 +358,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(364, 37);
+            this.pictureBox1.Location = new System.Drawing.Point(365, 27);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(423, 102);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
@@ -372,9 +370,9 @@
             this.groupBox2.Controls.Add(this.textBox_olusturulacakBarcode);
             this.groupBox2.Controls.Add(this.button_BarcodeBastir);
             this.groupBox2.Font = new System.Drawing.Font("Arial", 15.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.groupBox2.Location = new System.Drawing.Point(4, 537);
+            this.groupBox2.Location = new System.Drawing.Point(5, 547);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(575, 205);
+            this.groupBox2.Size = new System.Drawing.Size(472, 204);
             this.groupBox2.TabIndex = 78;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Barcode";
@@ -384,10 +382,10 @@
             this.textBox_olusturulacakBarcode.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.textBox_olusturulacakBarcode.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBox_olusturulacakBarcode.Font = new System.Drawing.Font("IDAHC39M Code 39 Barcode", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
-            this.textBox_olusturulacakBarcode.Location = new System.Drawing.Point(8, 31);
+            this.textBox_olusturulacakBarcode.Location = new System.Drawing.Point(8, 41);
             this.textBox_olusturulacakBarcode.Multiline = true;
             this.textBox_olusturulacakBarcode.Name = "textBox_olusturulacakBarcode";
-            this.textBox_olusturulacakBarcode.Size = new System.Drawing.Size(561, 92);
+            this.textBox_olusturulacakBarcode.Size = new System.Drawing.Size(447, 92);
             this.textBox_olusturulacakBarcode.TabIndex = 27;
             this.textBox_olusturulacakBarcode.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.textBox_olusturulacakBarcode.TextChanged += new System.EventHandler(this.textBox_olusturulacakBarcode_TextChanged);
@@ -395,7 +393,7 @@
             // button_BarcodeBastir
             // 
             this.button_BarcodeBastir.Font = new System.Drawing.Font("Arial Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button_BarcodeBastir.Location = new System.Drawing.Point(427, 139);
+            this.button_BarcodeBastir.Location = new System.Drawing.Point(313, 139);
             this.button_BarcodeBastir.Name = "button_BarcodeBastir";
             this.button_BarcodeBastir.Size = new System.Drawing.Size(142, 47);
             this.button_BarcodeBastir.TabIndex = 13;
@@ -403,32 +401,12 @@
             this.button_BarcodeBastir.UseVisualStyleBackColor = true;
             this.button_BarcodeBastir.Click += new System.EventHandler(this.button_BarcodeBastir_Click);
             // 
-            // button_kaydiYazdir
-            // 
-            this.button_kaydiYazdir.Font = new System.Drawing.Font("Arial Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button_kaydiYazdir.Location = new System.Drawing.Point(482, 387);
-            this.button_kaydiYazdir.Name = "button_kaydiYazdir";
-            this.button_kaydiYazdir.Size = new System.Drawing.Size(97, 47);
-            this.button_kaydiYazdir.TabIndex = 76;
-            this.button_kaydiYazdir.Text = "KAYDI\r\nYAZDIR";
-            this.button_kaydiYazdir.UseVisualStyleBackColor = true;
-            // 
-            // button_kaydiYenile
-            // 
-            this.button_kaydiYenile.Font = new System.Drawing.Font("Arial Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button_kaydiYenile.Location = new System.Drawing.Point(482, 334);
-            this.button_kaydiYenile.Name = "button_kaydiYenile";
-            this.button_kaydiYenile.Size = new System.Drawing.Size(97, 47);
-            this.button_kaydiYenile.TabIndex = 75;
-            this.button_kaydiYenile.Text = "KAYDI\r\nYENİLE";
-            this.button_kaydiYenile.UseVisualStyleBackColor = true;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
             this.label4.ImageAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.label4.Location = new System.Drawing.Point(581, 164);
+            this.label4.Location = new System.Drawing.Point(516, 184);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(272, 40);
             this.label4.TabIndex = 74;
@@ -437,7 +415,7 @@
             // textBox_ara
             // 
             this.textBox_ara.Font = new System.Drawing.Font("Courier New", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.textBox_ara.Location = new System.Drawing.Point(871, 166);
+            this.textBox_ara.Location = new System.Drawing.Point(806, 186);
             this.textBox_ara.Name = "textBox_ara";
             this.textBox_ara.Size = new System.Drawing.Size(159, 22);
             this.textBox_ara.TabIndex = 73;
@@ -446,16 +424,16 @@
             // 
             this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(585, 275);
+            this.dataGridView1.Location = new System.Drawing.Point(492, 265);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(823, 476);
+            this.dataGridView1.Size = new System.Drawing.Size(917, 486);
             this.dataGridView1.TabIndex = 72;
             this.dataGridView1.CellMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dataGridView1_CellMouseClick);
             // 
             // button_kaydiGuncelle
             // 
             this.button_kaydiGuncelle.Font = new System.Drawing.Font("Arial Black", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(162)));
-            this.button_kaydiGuncelle.Location = new System.Drawing.Point(482, 281);
+            this.button_kaydiGuncelle.Location = new System.Drawing.Point(174, 494);
             this.button_kaydiGuncelle.Name = "button_kaydiGuncelle";
             this.button_kaydiGuncelle.Size = new System.Drawing.Size(97, 47);
             this.button_kaydiGuncelle.TabIndex = 71;
@@ -661,8 +639,6 @@
             this.Controls.Add(this.label_günAyYil);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.button_kaydiYazdir);
-            this.Controls.Add(this.button_kaydiYenile);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.textBox_ara);
             this.Controls.Add(this.dataGridView1);
@@ -711,8 +687,6 @@
         private System.Windows.Forms.TextBox textBox_olusturulacakBarcode;
         private System.Windows.Forms.Button button_BarcodeBastir;
         private System.Windows.Forms.Button button_kaydiBarkodaDonustur;
-        private System.Windows.Forms.Button button_kaydiYazdir;
-        private System.Windows.Forms.Button button_kaydiYenile;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox textBox_ara;
         private System.Windows.Forms.DataGridView dataGridView1;

@@ -1,0 +1,22 @@
+Create Database ornek
+
+Create Table KullaniciBilgi (
+
+id int primary key identity (1,1),
+kullanici_adi nvarchar(),
+sifre nvarchar(50))
+
+
+
+
+Create Database ornek
+
+Create Table KullaniciBilgi (
+
+id int primary key identity (1,1),
+kullanici_adi nvarchar(),
+sifre nvarchar(50))
+
+
+ALTER TABLE kart
+ALTER COLUMN eylemKart nvarchar(100);

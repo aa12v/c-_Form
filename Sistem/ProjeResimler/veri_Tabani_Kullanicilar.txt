@@ -1,0 +1,9 @@
+1	Otomasyon Ve Yazılım Müdürü	Mehmet Ali	ALP	05XXXXXXXXX	XXX	mehmet	123	form2
+2	Elektrik Ve Elektronik Mühendisi	Gizem Sinem	DURMUŞ KAHRAMAN	05XXXXXXXXX	XXX	gizem	123	form3
+3	Bilgisayar Mühendisi	Hilal	ÇINAR	05XXXXXXXXX	XXX	hilal	123	form4
+4	Elektronik Ustabaşı	Murat	UÇKUN	05434751373	murat_uckun1907@hotmail.com	bozo43	3772	form5
+5	Elektronik Teknisyeni	Mücahit	SÖNMEZ	05511007130	mucosonmez43@gmail.com	ms4343	1453	form6
+6	Elektronik Teknisyeni	İbrahim	YAMUCAK	05511007130	elektronik4334@gmail.com	ibrahim43	0000	form7
+7	Elektronik Teknikeri	Muhittin Batuhan	İŞÇAN	05434473414	iscanbatuhan7@gmail.com	botuusdaa	1283	form8
+8	Elektronik Teknikeri	Enes	ÖDEMİŞ	05XXXXXXXXX	XXX	enes	123	form9
+NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL	NULL

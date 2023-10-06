@@ -1,0 +1,965 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ZBar</name>
+    </assembly>
+    <members>
+        <member name="T:ZBar.Image">
+            <summary>
+            Representation of an image in ZBar
+            </summary>
+        </member>
+        <member name="F:ZBar.Image.handle">
+            <summary>
+            Handle to unmanaged ressource
+            </summary>
+        </member>
+        <member name="M:ZBar.Image.#ctor(System.IntPtr,System.Boolean)">
+            <summary>
+            Create a new image from a pointer to an unmanaged resource
+            </summary>
+            <remarks>This resource will be managed by this Image instance.</remarks>
+            <param name="handle">
+            A <see cref="T:System.IntPtr"/> to unmananged ZBar image.
+            </param>
+            <param name="incRef">
+            Whether or not to increment the reference counter.
+            </param>
+        </member>
+        <member name="M:ZBar.Image.#ctor">
+            <summary>
+            Create/allocate a new uninitialized image
+            </summary>
+            <remarks>
+            Be aware that this image is NOT initialized, allocated.
+            And you must set width, height, format, data etc...
+            </remarks>
+        </member>
+        <member name="M:ZBar.Image.#ctor(System.Drawing.Image)">
+            <summary>
+            Create image from an instance of System.Drawing.Image
+            </summary>
+            <param name="image">
+            Image to convert to ZBar.Image
+            </param>
+            <remarks>
+            The converted image is in RGB3 format, so it should be converted using Image.Convert()
+            before it is scanned, as ZBar only reads images in GREY/Y800
+            </remarks>
+        </member>
+        <member name="P:ZBar.Image.Handle">
+            <value>
+            Get a pointer to the unmanaged image resource.
+            </value>
+        </member>
+        <member name="M:ZBar.Image.ToBitmap">
+            <summary>
+            Convert bitmap
+            </summary>
+            <returns>
+            A <see cref="T:System.Drawing.Bitmap"/> representation of this image
+            </returns>
+        </member>
+        <member name="P:ZBar.Image.Width">
+            <value>
+            Get/set the width of the image, doesn't affect the data
+            </value>
+        </member>
+        <member name="P:ZBar.Image.Height">
+            <value>
+            Get/set the height of the image, doesn't affect the data
+            </value>
+        </member>
+        <member name="P:ZBar.Image.Format">
+            <value>
+            Get/set the fourcc image format code for image sample data.
+            </value>
+            <remarks>
+            Chaning this doesn't affect the data.
+            See Image.FourCC for how to get the fourCC code.
+            For information on supported format see:
+            http://sourceforge.net/apps/mediawiki/zbar/index.php?title=Supported_image_formats
+            </remarks>
+        </member>
+        <member name="P:ZBar.Image.SequenceNumber">
+            <value>
+            Get/set a "sequence" (page/frame) number associated with this image.
+            </value>
+        </member>
+        <member name="P:ZBar.Image.Data">
+            <value>
+            Get/set the data associated with this image
+            </value>
+            <remarks>This method copies that data, using Marshal.Copy.</remarks>
+        </member>
+        <member name="F:ZBar.Image.CleanupHandler">
+            <summary>
+            Cleanup handler, by holding the reference statically the delegate won't be released
+            </summary>
+        </member>
+        <member name="P:ZBar.Image.Symbols">
+            <value>
+            Get ImageScanner decode result iterator.
+            </value>
+        </member>
+        <member name="M:ZBar.Image.Convert(System.UInt32)">
+            <summary>
+            Image format conversion. refer to the documentation for supported image formats
+            </summary>
+            <remarks>
+            The converted image size may be rounded (up) due to format constraints.
+            See Image.FourCC for how to get the fourCC code.
+            </remarks>
+            <param name="format">
+            FourCC format to convert to.
+            </param>
+            <returns>
+            A new <see cref="T:ZBar.Image"/> with the sample data from the original image converted to the requested format.
+            The original image is unaffected.
+            </returns>
+        </member>
+        <member name="M:ZBar.Image.FourCC(System.Char,System.Char,System.Char,System.Char)">
+            <summary>
+            Get FourCC code from four chars
+            </summary>
+            <remarks>
+            See FourCC.org for more information on FourCC.
+            For information on format supported by zbar see:
+            http://sourceforge.net/apps/mediawiki/zbar/index.php?title=Supported_image_formats
+            </remarks>
+        </member>
+        <member name="M:ZBar.Image.Dispose(System.Boolean)">
+            <summary>
+            Dispose this object
+            </summary>
+            <remarks>
+            This boolean disposing parameter here ensures that objects with a finalizer is not disposed,
+            this is method is invoked from the finalizer. Do overwrite, and call, this method in base
+            classes if you use any unmanaged resources.
+            </remarks>
+            <param name="disposing">
+            A <see cref="T:System.Boolean"/> False if called from the finalizer, True if called from Dispose.
+            </param>
+        </member>
+        <member name="M:ZBar.Image.Dispose">
+            <summary>
+            Release resources held by this object
+            </summary>
+        </member>
+        <member name="M:ZBar.Image.Finalize">
+            <summary>
+            Finalize this object
+            </summary>
+        </member>
+        <member name="T:ZBar.ImageScanner">
+            <summary>
+            Mid-level image scanner interface. reads barcodes from 2-D images
+            </summary>
+        </member>
+        <member name="M:ZBar.ImageScanner.#ctor">
+            <summary>
+            Create a new ImageScanner
+            </summary>
+        </member>
+        <member name="M:ZBar.ImageScanner.Scan(ZBar.Image)">
+            <summary>
+            Scan an image for symbols
+            </summary>
+            <remarks>
+            Once an image have been scanned the result will be associated with the image.
+            Use image.Symbols to access the symbol list.
+            </remarks>
+            <param name="image">
+            A <see cref="T:ZBar.Image"/> to be scanned
+            </param>
+            <returns>
+            A <see cref="T:System.Int32"/> number of symbols decoded on the image.
+            </returns>
+        </member>
+        <member name="M:ZBar.ImageScanner.Scan(System.Drawing.Image)">
+            <summary>
+            Scan an image for symbols
+            </summary>
+            <param name="image">
+            A <see cref="T:System.Drawing.Image"/> to be scanned for symbols
+            </param>
+            <remarks>
+            This method convert the image to the appropriate format,
+            and release the converted image immidiately. While copying
+            all the symbols to a list.
+            </remarks>
+            <returns>
+            A list of symbols found in the image
+            </returns>
+        </member>
+        <member name="P:ZBar.ImageScanner.Cache">
+            <value>
+            Enable or disable the inter-image result cache (default disabled).
+            </value>
+            <remarks>
+            Mostly useful for scanning video frames, the cache filters duplicate results from consecutive images,
+            while adding some consistency checking and hysteresis to the results.
+            this interface also clears the cache.
+            </remarks>
+        </member>
+        <member name="M:ZBar.ImageScanner.SetConfiguration(ZBar.SymbolType,ZBar.Config,System.Int32)">
+            <summary>
+            Set config for indicated symbology (0 for all) to specified value.
+            </summary>
+        </member>
+        <member name="M:ZBar.ImageScanner.Dispose(System.Boolean)">
+            <summary>
+            Dispose this object
+            </summary>
+            <remarks>
+            This boolean disposing parameter here ensures that objects with a finalizer is not disposed,
+            this is method is invoked from the finalizer. Do overwrite, and call, this method in base
+            classes if you use any unmanaged resources.
+            </remarks>
+            <param name="disposing">
+            A <see cref="T:System.Boolean"/> False if called from the finalizer, True if called from Dispose.
+            </param>
+        </member>
+        <member name="M:ZBar.ImageScanner.Dispose">
+            <summary>
+            Release resources held by this object
+            </summary>
+        </member>
+        <member name="M:ZBar.ImageScanner.Finalize">
+            <summary>
+            Finalize this object
+            </summary>
+        </member>
+        <member name="T:ZBar.Config">
+            <summary>
+            Configuration parameters for the image scanner
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.Enable">
+            <summary>
+            Enable symbology/feature
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.AddCheck">
+            <summary>
+            Enable check digit when optional
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.EmitCheck">
+            <summary>
+            Return check digit when present
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.ASCII">
+            <summary>
+            Enable full ASCII character set
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.Num">
+            <summary>
+            Number of boolean decoder configs
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.MinimumLength">
+            <summary>
+            Minimum data length for valid decode
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.MaximumLength">
+            <summary>
+            Maximum data length for valid decode
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.Position">
+            <summary>
+            Enable scanner to collect position data
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.XDensity">
+            <summary>
+            Image scanner vertical scan density
+            </summary>
+        </member>
+        <member name="F:ZBar.Config.YDensity">
+            <summary>
+            Image scanner horizontical scan density
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_create">
+            <summary> constructor. </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_destroy(System.IntPtr)">
+            <summary> destructor. </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_open(System.IntPtr,System.String)">
+            <summary>
+            open and probe a video device.
+            the device specified by platform specific unique name
+            (v4l device node path in *nix eg "/dev/video",
+             DirectShow DevicePath property in windows).
+            </summary>
+            <returns> 0 if successful or -1 if an error occurs</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_get_fd(System.IntPtr)">
+            <summary>
+            retrieve file descriptor associated with open *nix video device
+            useful for using select()/poll() to tell when new images are
+            available (NB v4l2 only!!).
+            </summary>
+            <returns> the file descriptor or -1 if the video device is not open
+            or the driver only supports v4l1</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_request_size(System.IntPtr,System.UInt32,System.UInt32)">
+            <summary>
+            request a preferred size for the video image from the device.
+            the request may be adjusted or completely ignored by the driver.
+            </summary>
+            <returns> 0 if successful or -1 if the video device is already
+            initialized</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_request_interface(System.IntPtr,System.Int32)">
+            <summary>
+            request a preferred driver interface version for debug/testing.
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_request_iomode(System.IntPtr,System.Int32)">
+            <summary>
+            request a preferred I/O mode for debug/testing.
+            </summary>
+            <remarks>You will get
+            errors if the driver does not support the specified mode.
+            @verbatim
+                0 = auto-detect
+                1 = force I/O using read()
+                2 = force memory mapped I/O using mmap()
+                3 = force USERPTR I/O (v4l2 only)
+            @endverbatim
+            must be called before zbar_video_open()
+            </remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_get_width(System.IntPtr)">
+            <summary>
+            retrieve current output image width.
+            </summary>
+            <returns>the width or 0 if the video device is not open</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_get_height(System.IntPtr)">
+            <summary>
+            retrieve current output image height.
+            </summary>
+            <returns>the height or 0 if the video device is not open</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_init(System.IntPtr,System.UInt32)">
+            <summary>
+            initialize video using a specific format for debug.
+            use zbar_negotiate_format() to automatically select and initialize
+            the best available format
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_enable(System.IntPtr,System.Int32)">
+            <summary>
+            start/stop video capture.
+            all buffered images are retired when capture is disabled.
+            </summary>
+            <returns> 0 if successful or -1 if an error occurs</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_video_next_image(System.IntPtr)">
+            <summary>
+            retrieve next captured image.  blocks until an image is available.
+            </summary>
+            <returns> NULL if video is not enabled or an error occurs</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_ref(System.IntPtr,System.Int32)">
+            <summary>
+            symbol reference count manipulation.
+            </summary>
+            <remarks>
+            increment the reference count when you store a new reference to the
+            symbol.  decrement when the reference is no longer used.  do not
+            refer to the symbol once the count is decremented and the
+            containing image has been recycled or destroyed.
+            the containing image holds a reference to the symbol, so you
+            only need to use this if you keep a symbol after the image has been
+            destroyed or reused.
+            </remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_get_type(System.IntPtr)">
+            <summary>
+            retrieve type of decoded symbol.
+            </summary>
+            <returns> the symbol type</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_get_data(System.IntPtr)">
+            <summary>
+            retrieve data decoded from symbol.
+            </summary>
+            <returns> the data string</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_get_data_length(System.IntPtr)">
+            <summary>
+            retrieve length of binary data.
+            </summary>
+            <returns> the length of the decoded data</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_get_quality(System.IntPtr)">
+            <summary>
+            retrieve a symbol confidence metric.
+            </summary>
+            <returns> an unscaled, relative quantity: larger values are better
+            than smaller values, where "large" and "small" are application
+            dependent.
+            </returns>
+            <remarks>expect the exact definition of this quantity to change as the
+            metric is refined.  currently, only the ordered relationship
+            between two values is defined and will remain stable in the future
+            </remarks>
+        </member>
+        <!-- Badly formed XML comment ignored for member "M:ZBar.NativeZBar.zbar_symbol_get_count(System.IntPtr)" -->
+        <member name="M:ZBar.NativeZBar.zbar_symbol_get_loc_size(System.IntPtr)">
+            <summary>
+            retrieve the number of points in the location polygon.  the
+            location polygon defines the image area that the symbol was
+            extracted from.
+            </summary>
+            <returns> the number of points in the location polygon</returns>
+            <remarks>this is currently not a polygon, but the scan locations
+            where the symbol was decoded</remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_get_loc_x(System.IntPtr,System.UInt32)">
+            <summary>
+            retrieve location polygon x-coordinates.
+            points are specified by 0-based index.
+            </summary>
+            <returns> the x-coordinate for a point in the location polygon.
+            -1 if index is out of range</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_get_loc_y(System.IntPtr,System.UInt32)">
+            <summary>
+            retrieve location polygon y-coordinates.
+            points are specified by 0-based index.
+            </summary>
+            <returns> the y-coordinate for a point in the location polygon.
+             -1 if index is out of range</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_next(System.IntPtr)">
+            <summary>
+            iterate the result set.
+            </summary>
+            <returns> the next result symbol, or
+            NULL when no more results are available</returns>
+            <remarks>Marked internal because it is used by the symbol iterators.</remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_symbol_xml(System.IntPtr,System.IntPtr@,System.UInt32@)">
+            <summary>
+            print XML symbol element representation to user result buffer.
+            </summary>
+            <remarks>see http://zbar.sourceforge.net/2008/barcode.xsd for the schema.</remarks>
+            <param name="symbol">is the symbol to print</param>
+            <param name="buffer"> is the inout result pointer, it will be reallocated
+            with a larger size if necessary.</param>
+            <param name="buflen">  is inout length of the result buffer.</param>
+            <returns> the buffer pointer</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_scanner_create">
+            <summary>
+            Constructor
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_scanner_destroy(System.IntPtr)">
+            <summary>
+            Destructor.
+            </summary>
+        </member>
+        <member name="T:ZBar.NativeZBar.zbar_image_data_handler">
+            <summary>
+            data handler callback function.
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_scanner_set_data_handler(System.IntPtr,ZBar.NativeZBar.zbar_image_data_handler,System.IntPtr)">
+            <summary>
+            setup result handler callback.
+            the specified function will be called by the scanner whenever
+            new results are available from a decoded image.
+            pass a NULL value to disable callbacks.
+            </summary>
+            <returns>the previously registered handler</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_scanner_set_config(System.IntPtr,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            set config for indicated symbology (0 for all) to specified value.
+            </summary>
+            <returns>0 for success, non-0 for failure (config does not apply to
+            specified symbology, or value out of range)
+            </returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_scanner_enable_cache(System.IntPtr,System.Int32)">
+            <summary>
+            enable or disable the inter-image result cache (default disabled).
+            mostly useful for scanning video frames, the cache filters
+            duplicate results from consecutive images, while adding some
+            consistency checking and hysteresis to the results.
+            this interface also clears the cache
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_scan_image(System.IntPtr,System.IntPtr)">
+            <summary>
+            scan for symbols in provided image.  The image format must be
+            "Y800" or "GRAY".
+            </summary>
+            <returns>
+             > 0 if symbols were successfully decoded from the image,
+            0 if no symbols were found or -1 if an error occurs
+            </returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_create">
+            <summary>new image constructor.
+            </summary>
+            <returns>
+            a new image object with uninitialized data and format.
+            this image should be destroyed (using zbar_image_destroy()) as
+            soon as the application is finished with it
+            </returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_destroy(System.IntPtr)">
+            <summary>image destructor.  all images created by or returned to the
+            application should be destroyed using this function.  when an image
+            is destroyed, the associated data cleanup handler will be invoked
+            if available
+            </summary><remarks>
+            make no assumptions about the image or the data buffer.
+            they may not be destroyed/cleaned immediately if the library
+            is still using them.  if necessary, use the cleanup handler hook
+            to keep track of image data buffers
+            </remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_ref(System.IntPtr,System.Int32)">
+            <summary>image reference count manipulation.
+            increment the reference count when you store a new reference to the
+            image.  decrement when the reference is no longer used.  do not
+            refer to the image any longer once the count is decremented.
+            zbar_image_ref(image, -1) is the same as zbar_image_destroy(image)
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_convert(System.IntPtr,System.UInt32)">
+            <summary>image format conversion.  refer to the documentation for supported
+            image formats
+            </summary>
+            <returns> a new image with the sample data from the original image
+            converted to the requested format.  the original image is
+            unaffected.
+            </returns>
+            <remarks> the converted image size may be rounded (up) due to format
+            constraints
+            </remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_convert_resize(System.IntPtr,System.UInt32,System.UInt32,System.UInt32)">
+            <summary>image format conversion with crop/pad.
+            if the requested size is larger than the image, the last row/column
+            are duplicated to cover the difference.  if the requested size is
+            smaller than the image, the extra rows/columns are dropped from the
+            right/bottom.
+            </summary>
+            <returns> a new image with the sample data from the original
+            image converted to the requested format and size.
+            </returns>
+            <remarks>the image is not scaled</remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_get_format(System.IntPtr)">
+            <summary>retrieve the image format.
+            </summary>
+            <returns> the fourcc describing the format of the image sample data</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_get_sequence(System.IntPtr)">
+            <summary>retrieve a "sequence" (page/frame) number associated with this image.
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_get_width(System.IntPtr)">
+            <summary>retrieve the width of the image.
+            </summary>
+            <returns> the width in sample columns</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_get_height(System.IntPtr)">
+            <summary>retrieve the height of the image.
+            </summary>
+            <returns> the height in sample rows</returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_get_data(System.IntPtr)">
+            <summary>return the image sample data.  the returned data buffer is only
+            valid until zbar_image_destroy() is called
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_get_data_length(System.IntPtr)">
+            <summary>return the size of image data.
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_first_symbol(System.IntPtr)">
+            <summary>image_scanner decode result iterator.
+            </summary>
+            <returns> the first decoded symbol result for an image
+            or NULL if no results are available
+            </returns>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_set_format(System.IntPtr,System.UInt32)">
+            <summary>specify the fourcc image format code for image sample data.
+            refer to the documentation for supported formats.
+            </summary>
+            <remarks> this does not convert the data!
+            (see zbar_image_convert() for that)
+            </remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_set_sequence(System.IntPtr,System.UInt32)">
+            <summary>associate a "sequence" (page/frame) number with this image.
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_set_size(System.IntPtr,System.UInt32,System.UInt32)">
+            <summary>specify the pixel size of the image.
+            </summary>
+            <remarks>this does not affect the data!</remarks>
+        </member>
+        <member name="T:ZBar.NativeZBar.zbar_image_cleanup_handler">
+            <summary>
+            Cleanup handler callback for image data.
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_set_data(System.IntPtr,System.IntPtr,System.UInt32,ZBar.NativeZBar.zbar_image_cleanup_handler)">
+            <summary>specify image sample data.  when image data is no longer needed by
+            the library the specific data cleanup handler will be called
+            (unless NULL)
+            </summary>
+            <remarks>application image data will not be modified by the library</remarks>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_free_data(System.IntPtr)">
+            <summary>built-in cleanup handler.
+            passes the image data buffer to free()
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_set_userdata(System.IntPtr,System.IntPtr)">
+            <summary>associate user specified data value with an image.
+            </summary>
+        </member>
+        <member name="M:ZBar.NativeZBar.zbar_image_get_userdata(System.IntPtr)">
+            <summary>return user specified data value associated with the image.
+            </summary>
+        </member>
+        <member name="T:ZBar.Symbol">
+            <summary>
+            Representation of a decoded symbol
+            </summary>
+            <remarks>This symbol does not hold any references to unmanaged resources.</remarks>
+        </member>
+        <member name="M:ZBar.Symbol.#ctor(System.IntPtr)">
+            <summary>
+            Initialize a symbol from pointer to a symbol
+            </summary>
+            <param name="symbol">
+            Pointer to a symbol
+            </param>
+        </member>
+        <member name="P:ZBar.Symbol.Count">
+            <value>
+            Retrieve current cache count.
+            </value>
+            <remarks>
+            When the cache is enabled for the image_scanner this provides inter-frame reliability and redundancy information for video streams.
+            	&lt; 0 if symbol is still uncertain.
+            	0 if symbol is newly verified.
+            	&gt; 0 for duplicate symbols
+            </remarks>
+        </member>
+        <member name="P:ZBar.Symbol.Data">
+            <value>
+            Data decoded from symbol.
+            </value>
+        </member>
+        <member name="P:ZBar.Symbol.Quality">
+            <value>
+            Get a symbol confidence metric.
+            </value>
+            <remarks>
+            An unscaled, relative quantity: larger values are better than smaller values, where "large" and "small" are application dependent.
+            </remarks>
+        </member>
+        <member name="P:ZBar.Symbol.Type">
+            <value>
+            Type of decoded symbol
+            </value>
+        </member>
+        <member name="T:ZBar.SymbolType">
+            <summary>
+            Different symbol types
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.None">
+            <summary>
+            No symbol decoded
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.Partial">
+            <summary>
+            Intermediate status
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.EAN8">
+            <summary>
+            EAN-8
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.UPCE">
+            <summary>
+            UPC-E
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.ISBN10">
+            <summary>
+            ISBN-10 (from EAN-13)
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.UPCA">
+            <summary>
+            UPC-A
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.EAN13">
+            <summary>
+            EAN-13
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.ISBN13">
+            <summary>
+            ISBN-13 (from EAN-13)
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.I25">
+            <summary>
+            Interleaved 2 of 5.
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.CODE39">
+            <summary>
+            Code 39.
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.PDF417">
+            <summary>
+            PDF417
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.QRCODE">
+            <summary>
+            QR Code
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.CODE128">
+            <summary>
+            Code 128
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.Symbole">
+            <summary>
+            mask for base symbol type
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.Addon2">
+            <summary>
+            2-digit add-on flag
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.Addon5">
+            <summary>
+            5-digit add-on flag
+            </summary>
+        </member>
+        <member name="F:ZBar.SymbolType.Addon">
+            <summary>
+            add-on flag mask
+            </summary>
+        </member>
+        <member name="T:ZBar.Video">
+            <summary>
+            Mid-level video source abstraction. captures images from a video device
+            </summary>
+        </member>
+        <member name="M:ZBar.Video.#ctor">
+            <summary>
+            Create a video instance
+            </summary>
+        </member>
+        <member name="M:ZBar.Video.Open(System.String)">
+            <summary>
+            Open and probe a video device.
+            </summary>
+            <param name="device">
+            The device specified by platform specific unique name (v4l device node path in *nix eg "/dev/video", DirectShow DevicePath property in windows).
+            </param>
+        </member>
+        <member name="M:ZBar.Video.Close">
+            <summary>
+            Close the video device
+            </summary>
+        </member>
+        <member name="P:ZBar.Video.Enabled">
+            <value>
+            Start/stop video capture, must be called after Open()
+            </value>
+        </member>
+        <member name="P:ZBar.Video.Width">
+            <value>
+            Get output handle width
+            </value>
+        </member>
+        <member name="P:ZBar.Video.Height">
+            <value>
+            Get output image height
+            </value>
+        </member>
+        <member name="M:ZBar.Video.RequestSize(System.UInt32,System.UInt32)">
+            <summary>
+            Request a other output image size
+            </summary>
+            <remarks>
+            The request may be adjusted or completely ignored by the driver.
+            </remarks>
+            <param name="width">
+            Desired output width
+            </param>
+            <param name="height">
+            Desired output height
+            </param>
+        </member>
+        <member name="M:ZBar.Video.NextFrame">
+            <summary>
+            Retrieve next captured image
+            </summary>
+            <remarks>This method blocks untill an image have been captured.</remarks>
+            <returns>
+            A <see cref="T:ZBar.Image"/> representating the next image captured
+            </returns>
+        </member>
+        <member name="M:ZBar.Video.Dispose(System.Boolean)">
+            <summary>
+            Dispose this object
+            </summary>
+            <remarks>
+            This boolean disposing parameter here ensures that objects with a finalizer is not disposed,
+            this is method is invoked from the finalizer. Do overwrite, and call, this method in base
+            classes if you use any unmanaged resources.
+            </remarks>
+            <param name="disposing">
+            A <see cref="T:System.Boolean"/> False if called from the finalizer, True if called from Dispose.
+            </param>
+        </member>
+        <member name="M:ZBar.Video.Dispose">
+            <summary>
+            Release resources held by this object
+            </summary>
+        </member>
+        <member name="M:ZBar.Video.Finalize">
+            <summary>
+            Finalize this object
+            </summary>
+        </member>
+        <member name="P:ZBar.ZBar.Version">
+            <value>
+            Get version of the underlying zbar library
+            </value>
+        </member>
+        <member name="T:ZBar.ZBarException">
+            <summary>
+            An exception that happened in ZBar
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarException.verbosity">
+            <summary>
+            Verbosity constant, for errors
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarException.message">
+            <summary>
+            Error message
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarException.code">
+            <summary>
+            Error code
+            </summary>
+        </member>
+        <member name="P:ZBar.ZBarException.Message">
+            <value>
+            Error message from ZBar
+            </value>
+        </member>
+        <member name="P:ZBar.ZBarException.ErrorCode">
+            <value>
+            Error code of this exception, from ZBar
+            </value>
+        </member>
+        <member name="T:ZBar.ZBarError">
+            <summary>
+            Error codes
+            </summary>
+            <remarks>
+            The ordering matches zbar_error_t from zbar.h
+            </remarks>
+        </member>
+        <member name="F:ZBar.ZBarError.Ok">
+            <summary>
+            No error, or zbar is not aware of the error
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.OutOfMemory">
+            <summary>
+            Out of memory
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.InternalLibraryError">
+            <summary>
+            Internal library error
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.Unsupported">
+            <summary>
+            Unsupported request
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.InvalidRequest">
+            <summary>
+            Invalid request
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.SystemError">
+            <summary>
+            System error
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.LockingError">
+            <summary>
+            Locking error
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.AllResourcesBusyError">
+            <summary>
+            All resources busy
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.X11DisplayError">
+            <summary>
+            X11 display error
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.X11ProtocolError">
+            <summary>
+            X11 Protocol error
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.OutputWindowClosed">
+            <summary>
+            Output window closed
+            </summary>
+        </member>
+        <member name="F:ZBar.ZBarError.WindowsAPIError">
+            <summary>
+            Windows system error
+            </summary>
+        </member>
+    </members>
+</doc>

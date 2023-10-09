@@ -1,0 +1,192 @@
+bigint: 8 byte uzunluğunda, tamsayı veri tipi.
+binary: 
+bit:
+char: Sabit uzunlukta, üzerinde işlem yapılmayacak degerler
+date: 3 byte uzunluğunda, yıl ay gün tutumu yapar
+datetime: 8 byte uzunluğunda, yıl ay gün saat dakika saniye tutumu yapar
+datetime2(7): 8 byte uzunluğunda, yıl ay gün saat dakika saniye tutumu yapar ve ek olarak 7 basamaga kadar salise tutumu yapar
+datetimeoffset(7): ülkelere göre değişen zaman farkı için değişken türü
+decimal: ondalıklı degerler tutan veri türü
+float: ondalıklı degerler tutan veri türü
+geography: cografi kordinat ve gps bilgileri için kullanılır
+geometry: geometrik degerleri
+hierarchyid:
+image:
+int:
+money:
+nchar:
+ntext:
+numeric:
+nvarchar:
+real:
+smalldatetime:
+smallint:
+smallmoney:
+sql_variant:
+text:
+time:
+timestamp:
+tinyint:
+uniqueidentifier:
+varbinary:
+varchar:
+
+-------------------------------------------------------------------------------------
+
+1) SQL VERİ TANIMLAMA DİLİ (DATA DEFINITION LANGUAGE - DDL)
+
+	------------------------------------------
+
+1.1) CREATE: Oluşturmak
+
+	Kullanım-1 Mantık:
+
+	(Eylem Ne? - Oluşturmak)
+	(Ne Oluşturmak? - Veri Tabanı)
+	(Veri Tabanının Adı Ne Olacak? - Veri_Tabani_isim)
+
+	Komut: create database Veri_Tabani_isim
+
+	------------------------------------------
+	Kullanım-2 Mantık:
+
+	(Eylem Ne? - Oluşturmak)
+	(Ne Oluşturmak? - Veri Tablosu)
+	(Veri Tablosunun Adı Ne Olacak? - Veri_Tablosu_isim)
+	(Oluşturulacak Tablonun Bölümleri nelerdir? - 
+						      (sütun_Adi sütun_Veri_Tipi),
+		 				       sütun_Adi sütun_Veri_Tipi),
+						       sütun_Adi sütun_Veri_Tipi))
+
+	Komut: create table Veri_Tablosu_isim (sütun_Adi sütun_Veri_Tipi),
+		 			       sütun_Adi sütun_Veri_Tipi),
+		 			       sütun_Adi sütun_Veri_Tipi))
+
+	------------------------------------------									
+1.2) USE: Belirtilen veritabanını geçerli çalışma veritabanı olarak ayarlar. Veritabanı seçimi için kullanılır.
+
+	Kullanım Mantık:
+
+	(Eylem Ne? - Veritabanı Seçmek)
+	(Seçilecek Veritabanı Adı Ne? - Veri_Tabani_isim)
+
+	Komut: use Veri_Tabani_isim
+
+	------------------------------------------	
+
+1.3) ALTER: Güncelleme
+
+	
+	1.3.1) ADD: Ekleme
+
+	Kullanım-1 Mantık:
+ 
+	(Eylem Ne? - Var Olan Tabloya Yeni Sütun Eklemek - Ekleme İşlemi)
+	(Nereye Sütun Eklemek? - Veri Tablosuna)
+	(Eklenecek Veri Tablosunun Adı Ne? - Veri_Tablosu_isim)
+	(Veri Tablosuna Ne Yapılacak? - Sütun Ekleme İşlemi)
+	(Eklenecek Sütunun Adı Ne? - sütun_Adi)
+	(Eklenecek Sütunun Veri Tipi Ne? - sütun_Veri_Tipi)
+
+	Komut: alter table Veri_Tablosu_isim add sütun_Adi sütun_Veri_Tipi
+
+	------------------------------------------
+
+	Kullanım-2 Mantık:
+
+	(Eylem Ne? - Var Olan Tabloya Yeni Sütunlar Eklemek - Ekleme İşlemi)
+	(Nereye Sütun Eklemek? - Veri Tablosuna)
+	(Eklenecek Veri Tablosunun Adı Ne? - Veri_Tablosu_isim)
+	(Veri Tablosuna Ne Yapılacak? - Sütun Ekleme İşlemi)
+	(Eklenecek 1.Sütunun Adı Ne? - sütun1_Adi)
+	(Eklenecek 1.Sütunun Değişken Veri Tipi Ne? - sütun1_Veri_Tipi)
+	(Bölümleri Birbirinden Ayıracak Noktalama İşareti Nedir? - ,)
+	(Eklenecek 2.Sütunun Adı Ne? - sütun2_Adi)
+	(Eklenecek 2.Sütunun Değişken Veri Tipi Ne? - sütun2_Veri_Tipi)
+
+	Komut: alter table Veri_Tablosu_isim add sütun1_Adi sütun1_Veri_Tipi, sütun2_Adi sütun2_Veri_Tipi
+
+	------------------------------------------
+
+	1.3.2) ALTER: Değişim / Güncelleme
+
+	Kullanım Mantık:
+
+	(Eylem Ne? - Var Olan Tablodaki Sütunu güncellemek - Güncelleme İşlemi)
+	(Neredeki Sütun Güncellenecek? - Veri Tablosundaki)
+	(Güncellenecek Veri Tablosunun Adı Ne? - Veri_Tablosu_isim)
+	(Veri Tablosuna Ne Yapılacak? - Sütun Güncelleme İşlemi)
+	(Güncellenecek Sütunun Adı Ne? - sütun_Adi)
+	(Güncellenecek Sütunun Yeni Değişken Veri Tipi Ne? - sütun_Veri_Tipi)
+
+	Komut: alter table Veri_Tablosu_isim alter column sütun_Adi sütun_Veri_Tipi
+
+	------------------------------------------
+	1.3.1) DROP: Silme
+	
+	Kullanım Mantık:
+	
+	(Eylem Ne? - Var Olan Bir Tablodan Seçilen Sütunu Silmek / Bir Nevi Tabloyu Güncelleme)
+	(Nereden Silinecek? - Veri Tablosu)
+	(Sütun Silinecek Tablonun Adı Ne? - Veri_Tablosu_isim)
+	(Veri Tablosuna Ne Yapılacak? - Sütun Silme İşlemi)
+	(Silinecek Sütunun Adı Ne? - sütun_Adi)
+
+	Komut: alter table Veri_Tablosu_isim drop column sütun_Adi
+	------------------------------------------
+
+1.4) DROP: Silme İşlemi
+
+	
+	Kullanım-1 Mantık:
+	
+	(Eylem Ne? - Var Olan Bir Tabloyu Silmek)
+	(Ne Silinecek? - Veri Tablosu)
+	(Silinecek Tablo Adı Ne? - Veri_Tablosu_isim)
+
+	Komut: drop table Veri_Tablosu_isim
+
+	------------------------------------------
+	
+1.5) TRUNCATE: Veri Tablosunun içerigini sıfırlar ve işlem sırasında otomatik artan sütunlar (örneğin, birincil anahtar sütunu) sıfırlanır ve sıfırdan başlayacak şekilde ayarlanır.
+	
+	Kullanım Mantık:
+	
+	(Eylem Ne? - Var Olan Bir Tablonun İçeriğini Sıfırlamak - Birincil Anahtar Dahil)
+	(Neyin içeriği Silinecek? - Veri Tablosunun)
+	(Silinecek Tablo Adı Ne? - Veri_Tablosu_isim)
+	
+	Komut: truncate table Veri_Tablosu_isim
+
+	------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------
+2) SQL VERİ İŞLEME DİLİ (DATA MANIPULATION LANGUAGE - DML)
+
+	------------------------------------------
+
+2.1) SELECT: Seçmek
+
+	Kullanım Mantık:	
+
+	(Eylem Ne? - Bir Tablonun İçeriğini Seçmek)
+	(Hangi Sütunlar Seçilecek? - *(Tüm Sütunlar Seçilir) ya da Tek Tek Sütun İsmi Yazılır)
+	(-den, -dan Anlamında Kullanılan Anahtar Kelime - from)
+	(Silinecek Tablo Adı Ne? - Veri_Tablosu_isim)
+
+	Komut: select * from Veri_Tablosu_isim
+	komut: select sütun1_Adi, sütun2_Adi, sütun3_Adi from Veri_Tablosu_isim
+
+	------------------------------------------
+
+2.2) DELETE: Veri silmek
+2.3) UDPATE: Veri güncellemek
+2.4) INSERT: Veri kaydetmek
+
+--------------------------------------------------------------------------------------------------------------------
+3) SQL VERİ KONTROL DİLİ (DATA CONTROL LANGUAGE - DCL)
+3.1) GRANT:
+3.2) DENY:
+3.3) REVOKE:
+
+--------------------------------------------------------------------------------------------------------------------
